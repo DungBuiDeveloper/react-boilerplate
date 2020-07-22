@@ -12,6 +12,9 @@ import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
 
 import HomePage from 'containers/HomePage/Loadable';
+import Blog from 'containers/Blog/Loadable';
+import AddBlog from 'containers/Blog/AddBlog';
+import EditBlog from 'containers/Blog/EditBlog';
 import FeaturePage from 'containers/FeaturePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
@@ -20,12 +23,8 @@ import Footer from 'components/Footer';
 import GlobalStyle from '../../global-styles';
 
 const AppWrapper = styled.div`
-  max-width: calc(768px + 16px * 2);
   margin: 0 auto;
-  display: flex;
-  min-height: 100%;
   padding: 0 16px;
-  flex-direction: column;
 `;
 
 export default function App() {
@@ -41,6 +40,16 @@ export default function App() {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/features" component={FeaturePage} />
+        {/* Route Blog*/}
+        <Route path="/blog" component={Blog} />
+        <Route path="/blogs/add-blog" component={AddBlog} />
+        <Route
+          path="/blogs/edit-blog/:id"
+          render={({ match }) => <EditBlog match={match} />}
+        />
+
+        {/* Route Blog*/}
+
         <Route path="" component={NotFoundPage} />
       </Switch>
       <Footer />

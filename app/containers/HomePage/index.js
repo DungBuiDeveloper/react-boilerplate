@@ -46,6 +46,7 @@ export function HomePage({
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
+  //didmount component
   useEffect(() => {
     // When initial state username is not null, submit the form to load repos
     if (username && username.trim().length > 0) onSubmitForm();
