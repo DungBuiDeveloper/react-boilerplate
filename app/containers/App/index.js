@@ -22,6 +22,8 @@ import Footer from 'components/Footer';
 
 import GlobalStyle from '../../global-styles';
 
+import PrivateRoute from './PrivateRoute';
+
 const AppWrapper = styled.div`
   margin: 0 auto;
   padding: 0 16px;
@@ -30,24 +32,18 @@ const AppWrapper = styled.div`
 export default function App() {
   return (
     <AppWrapper>
-      <Helmet
-        titleTemplate="%s - React.js Boilerplate"
-        defaultTitle="React.js Boilerplate"
-      >
-        <meta name="description" content="A React.js Boilerplate application" />
-      </Helmet>
       <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />
+        <Route exact path="/login" component={HomePage} />
         <Route path="/features" component={FeaturePage} />
         {/* Route Blog*/}
-        <Route path="/blog" component={Blog} />
-        <Route path="/blogs/add-blog" component={AddBlog} />
-        <Route
+        <PrivateRoute path="/blogs" component={Blog} />
+        <PrivateRoute path="/blogs/add-blog" component={AddBlog} />
+        <PrivateRoute
           path="/blogs/edit-blog/:id"
           render={({ match }) => <EditBlog match={match} />}
         />
-
         {/* Route Blog*/}
 
         <Route path="" component={NotFoundPage} />
