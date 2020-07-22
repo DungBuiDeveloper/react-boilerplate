@@ -7,10 +7,10 @@
  */
 
 import React from 'react';
-import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
-import { Switch, Route } from 'react-router-dom';
-
+import { Route } from 'react-router-dom';
+import Switch from 'react-router-transition-switch';
+import Fader from 'react-fader';
 import HomePage from 'containers/HomePage/Loadable';
 import Blog from 'containers/Blog/Loadable';
 import AddBlog from 'containers/Blog/AddBlog';
@@ -23,6 +23,7 @@ import Footer from 'components/Footer';
 import GlobalStyle from '../../global-styles';
 
 import PrivateRoute from './PrivateRoute';
+import ScrollToTop from './ScrollToTop';
 
 const AppWrapper = styled.div`
   margin: 0 auto;
@@ -32,11 +33,13 @@ const AppWrapper = styled.div`
 export default function App() {
   return (
     <AppWrapper>
+      <ScrollToTop />
       <Header />
-      <Switch>
+      <Switch component={Fader}>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/login" component={HomePage} />
         <Route path="/features" component={FeaturePage} />
+
         {/* Route Blog*/}
         <PrivateRoute path="/blogs" component={Blog} />
         <PrivateRoute path="/blogs/add-blog" component={AddBlog} />
